@@ -117,11 +117,11 @@ class TimetableGenerator {
 public class Main {
     public static void main(String[] args) {
         List<Subject> subjects = new ArrayList<>();
-        subjects.add(new Subject("Mathematics", "Mr. Sharma", 7));
-        subjects.add(new Subject("Physics", "Ms. Patel", 6));
-        subjects.add(new Subject("Chemistry", "Mr. Verma", 6));
-        subjects.add(new Subject("Computer Science", "Ms. Rao", 6));
-        subjects.add(new Subject("English", "Mrs. Singh", 5));
+        subjects.add(new Subject("Mathematics", "Mr. Sharma", 5));
+        subjects.add(new Subject("Physics", "Ms. Patel", 4));
+        subjects.add(new Subject("Chemistry", "Mr. Verma", 4));
+        subjects.add(new Subject("Computer Science", "Ms. Rao", 4));
+        subjects.add(new Subject("English", "Mrs. Singh", 3));
 
         TimetableGenerator generator = new TimetableGenerator(subjects);
         if (generator.buildTimetable()) {
