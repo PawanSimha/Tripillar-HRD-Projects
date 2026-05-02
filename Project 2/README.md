@@ -16,6 +16,8 @@ java -cp "Project 2" Main
 ```
 
 ## Features
-- Backtracking-based timetable assignment
-- Teacher clash avoidance per day
-- Weekly display of generated schedule
+- Backtracking-based timetable generation
+- Assigns subjects to time slots
+- Avoids teacher conflicts
+- Avoids room clashes
+- Uses a constraint satisfaction approach with `isSafe`, `assignSlot`, and `backtrack`
