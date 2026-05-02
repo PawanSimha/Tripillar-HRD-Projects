@@ -17,7 +17,7 @@ java -cp "Project 2" Main
 
 ## Features
 - Backtracking-based timetable generation
-- Assigns subjects to time slots
-- Avoids teacher conflicts
-- Avoids room clashes
+- Assigns subjects to time slots across a 5-day week
+- Avoids consecutive same-subject periods in a day
+- Uses subject, teacher, and room data for schedule output
 - Uses a constraint satisfaction approach with `isSafe`, `assignSlot`, and `backtrack`
