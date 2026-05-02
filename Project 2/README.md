@@ -17,7 +17,8 @@ java -cp "Project 2" Main
 
 ## Features
 - Backtracking-based timetable generation
-- Assigns subjects to time slots across a 5-day week
-- Avoids consecutive same-subject periods in a day
-- Uses subject, teacher, and room data for schedule output
-- Uses a constraint satisfaction approach with `isSafe`, `assignSlot`, and `backtrack`
+- Assigns 6 subjects to 6 daily time slots: 09:00, 10:00, 11:00, 13:00, 14:00, 15:00
+- Lunch break at 12:00 is excluded from assignment
+- Avoids teacher and room conflicts for each time slot
+- Implements `generateTimetable()`, `isSafe()`, and `backtrack()`
+- Displays a clean ASCII timetable grid with Time, Subject, Teacher, and Room
