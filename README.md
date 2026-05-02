@@ -38,3 +38,11 @@ Mohammed Azhar Hussain is also a trainer with Tripillar company and is guiding u
    - `java -cp "Project 1" Main`
    - `java -cp "Project 2" Main`
 
+## Notes
+- Both projects are contained in separate folders.
+- `Project 1` implements a ride booking history system using a linked list.
+- `Project 2` implements a backtracking-based smart timetable generator.
+- `Project 2` uses 6 subjects and assigns them to 6 daily time slots (09:00, 10:00, 11:00, 13:00, 14:00, 15:00).
+- The lunch break at 12:00 is excluded from assignment.
+- Ensure compiled `.class` files are not uploaded to GitHub.
+

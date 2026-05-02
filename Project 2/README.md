@@ -22,3 +22,8 @@ java -cp "Project 2" Main
 - Avoids teacher and room conflicts for each time slot
 - Implements `generateTimetable()`, `isSafe()`, and `backtrack()`
 - Displays a clean ASCII timetable grid with Time, Subject, Teacher, and Room
+
+## Timetable Details
+- Subjects used: Mathematics, Physics, Java, Chemistry, English, History
+- Teachers used: Mr. Sharma, Ms. Patel, Ms. Rao, Mr. Verma, Mrs. Singh, Mr. Iyer
+- Rooms used: A1, B2, L1, C3, E1, H2
