@@ -20,7 +20,7 @@ Tripillar company visited our college and provided training on Java and DSA. Dur
 
 ## Trainer Details
 - **Trainer:** Mohammed Azhar Hussain
-- **Role:** Co-founder of AQME NZ Automation Pvt. Ltd., Bangalore
+- **Role:** Co-director of AQMENZ Automation Pvt. Ltd., Bangalore
 - **Training Company:** Tripillar
 
 Mohammed Azhar Hussain is also a trainer with Tripillar company and is guiding us through the Java DSA training and assignment.
