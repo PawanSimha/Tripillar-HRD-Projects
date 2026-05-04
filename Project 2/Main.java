@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class Subject {
     private final String name;
@@ -174,8 +175,167 @@ class TimetableGenerator {
 }
 
 public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static List<Subject> subjects = new ArrayList<>();
+    private static TimetableGenerator generator;
+
     public static void main(String[] args) {
-        List<Subject> subjects = new ArrayList<>();
+        displayWelcome();
+        mainMenu();
+        scanner.close();
+    }
+
+    private static void displayWelcome() {
+        System.out.println("╔════════════════════════════════════════════════════════╗");
+        System.out.println("║       Smart Timetable Generator (Interactive)         ║");
+        System.out.println("╚════════════════════════════════════════════════════════╝");
+        System.out.println();
+    }
+
+    private static void mainMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("\n┌─ Main Menu ────────────────────────────────────────┐");
+            System.out.println("│ 1. Add Subject                                     │");
+            System.out.println("│ 2. View All Subjects                               │");
+            System.out.println("│ 3. Remove Subject                                  │");
+            System.out.println("│ 4. Generate Timetable                              │");
+            System.out.println("│ 5. Load Sample Data                                │");
+            System.out.println("│ 6. Clear All Subjects                              │");
+            System.out.println("│ 0. Exit                                            │");
+            System.out.println("└────────────────────────────────────────────────────┘");
+            System.out.print("\nEnter your choice: ");
+            
+            int choice = getIntInput();
+            System.out.println();
+
+            switch (choice) {
+                case 1:
+                    addSubject();
+                    break;
+                case 2:
+                    viewSubjects();
+                    break;
+                case 3:
+                    removeSubject();
+                    break;
+                case 4:
+                    generateTimetable();
+                    break;
+                case 5:
+                    loadSampleData();
+                    break;
+                case 6:
+                    clearAllSubjects();
+                    break;
+                case 0:
+                    System.out.println("Thank you for using Smart Timetable Generator. Goodbye!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("❌ Invalid choice! Please try again.");
+            }
+        }
+    }
+
+    private static void addSubject() {
+        System.out.println("┌─ Add New Subject ──────────────────────────────────┐");
+        
+        System.out.print("Enter subject name: ");
+        String name = scanner.nextLine().trim();
+        if (name.isEmpty()) {
+            System.out.println("❌ Subject name cannot be empty!");
+            return;
+        }
+
+        System.out.print("Enter teacher name: ");
+        String teacher = scanner.nextLine().trim();
+        if (teacher.isEmpty()) {
+            System.out.println("❌ Teacher name cannot be empty!");
+            return;
+        }
+
+        System.out.print("Enter room number: ");
+        String room = scanner.nextLine().trim();
+        if (room.isEmpty()) {
+            System.out.println("❌ Room number cannot be empty!");
+            return;
+        }
+
+        System.out.print("Enter required periods per week: ");
+        int periods = getIntInput();
+        if (periods <= 0 || periods > 30) {
+            System.out.println("❌ Periods must be between 1 and 30!");
+            return;
+        }
+
+        subjects.add(new Subject(name, teacher, room, periods));
+        System.out.println("✅ Subject added successfully!");
+        System.out.println("└────────────────────────────────────────────────────┘");
+    }
+
+    private static void viewSubjects() {
+        System.out.println("┌─ All Subjects ─────────────────────────────────────┐");
+        if (subjects.isEmpty()) {
+            System.out.println("│ No subjects added yet!                             │");
+        } else {
+            System.out.println(String.format("│ Total subjects: %d", subjects.size()));
+            System.out.println("└────────────────────────────────────────────────────┘");
+            System.out.println("+────+──────────────────+──────────────────+───────+────────+");
+            System.out.printf("| %-2s | %-16s | %-16s | %-5s | %-6s |%n", "No", "Subject", "Teacher", "Room", "Period");
+            System.out.println("+────+──────────────────+──────────────────+───────+────────+");
+            
+            for (int i = 0; i < subjects.size(); i++) {
+                Subject s = subjects.get(i);
+                System.out.printf("| %-2d | %-16s | %-16s | %-5s | %-6d |%n", 
+                    i + 1, s.getName(), s.getTeacher(), s.getRoom(), s.getRequiredPeriods());
+            }
+            System.out.println("+────+──────────────────+──────────────────+───────+────────+");
+        }
+    }
+
+    private static void removeSubject() {
+        if (subjects.isEmpty()) {
+            System.out.println("❌ No subjects to remove!");
+            return;
+        }
+
+        viewSubjects();
+        System.out.print("\nEnter subject number to remove (0 to cancel): ");
+        int choice = getIntInput();
+
+        if (choice == 0) {
+            return;
+        }
+
+        if (choice > 0 && choice <= subjects.size()) {
+            Subject removed = subjects.remove(choice - 1);
+            System.out.println("✅ Subject '" + removed.getName() + "' removed successfully!");
+        } else {
+            System.out.println("❌ Invalid choice!");
+        }
+    }
+
+    private static void generateTimetable() {
+        if (subjects.isEmpty()) {
+            System.out.println("❌ Please add at least one subject before generating timetable!");
+            return;
+        }
+
+        System.out.println("⏳ Generating timetable...\n");
+        generator = new TimetableGenerator(subjects);
+
+        if (generator.generateTimetable()) {
+            System.out.println("✅ Timetable generated successfully!\n");
+            generator.printTimetable();
+        } else {
+            System.out.println("❌ Could not generate a valid timetable with the given constraints.");
+            System.out.println("   Try adjusting the number of periods for each subject.");
+        }
+    }
+
+    private static void loadSampleData() {
+        subjects.clear();
         subjects.add(new Subject("Mathematics", "Mr. Sharma", "A1", 5));
         subjects.add(new Subject("Physics", "Ms. Patel", "B2", 5));
         subjects.add(new Subject("Java", "Ms. Rao", "L1", 5));
@@ -183,11 +343,35 @@ public class Main {
         subjects.add(new Subject("English", "Mrs. Singh", "E1", 5));
         subjects.add(new Subject("History", "Mr. Iyer", "H2", 5));
 
-        TimetableGenerator generator = new TimetableGenerator(subjects);
-        if (generator.generateTimetable()) {
-            generator.printTimetable();
+        System.out.println("✅ Sample data loaded successfully!");
+        viewSubjects();
+    }
+
+    private static void clearAllSubjects() {
+        if (subjects.isEmpty()) {
+            System.out.println("ℹ️  No subjects to clear!");
+            return;
+        }
+
+        System.out.print("Are you sure you want to clear all subjects? (yes/no): ");
+        String confirmation = scanner.nextLine().trim().toLowerCase();
+        
+        if (confirmation.equals("yes")) {
+            subjects.clear();
+            generator = null;
+            System.out.println("✅ All subjects cleared!");
         } else {
-            System.out.println("No valid solution found.");
+            System.out.println("❌ Operation cancelled.");
+        }
+    }
+
+    private static int getIntInput() {
+        try {
+            int input = Integer.parseInt(scanner.nextLine().trim());
+            return input;
+        } catch (NumberFormatException e) {
+            System.out.println("❌ Please enter a valid number!");
+            return -1;
         }
     }
 }

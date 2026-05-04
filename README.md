@@ -5,7 +5,7 @@ This workspace contains two Java assignment projects given by Tripillar company 
 
 ## Projects Included
 - **Project One:** Ride Booking History System (Linked List Based)
-- **Project Two:** Smart Timetable Generator (Backtracking)
+- **Project Two:** Smart Timetable Generator (Backtracking) - **Now with Interactive User Interface!**
 
 Each project is implemented in its own folder and contains Java source code that can be compiled and run independently.
 
@@ -41,8 +41,14 @@ Mohammed Azhar Hussain is also a trainer with Tripillar company and is guiding u
 ## Notes
 - Both projects are contained in separate folders.
 - `Project 1` implements a ride booking history system using a linked list.
-- `Project 2` implements a backtracking-based smart timetable generator.
-- `Project 2` uses 6 subjects and assigns them to 6 daily time slots (09:00, 10:00, 11:00, 13:00, 14:00, 15:00).
+- `Project 2` implements a backtracking-based smart timetable generator with an interactive menu system.
+- `Project 2` now features a dynamic user interface where you can:
+  - Add subjects dynamically with custom details
+  - View all added subjects in a formatted table
+  - Remove specific subjects
+  - Generate timetables based on selected subjects
+  - Load sample data for quick testing
+  - Clear all subjects and start fresh
 - The lunch break at 12:00 is excluded from assignment.
 - Ensure compiled `.class` files are not uploaded to GitHub.
 
